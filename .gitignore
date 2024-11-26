@@ -1,0 +1,19 @@
+/backend/node_modules
+/backend/.env
+ecommerce/node_modules
+ecommerce/.pnp
+ecommerce/.pnp.js
+# testing
+ecommerce/coverage
+# production
+ecommerce/build
+# misc
+ecommerce/.DS_Store
+ecommerce/.env.local
+ecommerce/.env.development.local
+ecommerce/.env.test.local
+ecommerce/.env.production.local
+
+ecommerce/npm-debug.log*
+ecommerce/yarn-debug.log*
+ecommerce/yarn-error.log*
