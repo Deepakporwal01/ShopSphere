@@ -25,7 +25,6 @@ router.post("/signin",userSigninController);
 router.get("/user-details",authToken,userDetailController);
 router.get("/userLogout",userLogoutController);
 router.get("/all-users",authToken,allUsersController);
-
 router.post("/update-user",authToken,updateUserController);
 router.post("/upload-product",authToken,UploadProductController);
 router.get("/get-product",getProductController);

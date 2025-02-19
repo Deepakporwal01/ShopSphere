@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { SummaryApi } from "../common";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 import { displayINRCurrency } from "../helpers/displayCurrency.js";
 import { addToCart } from "../helpers/addToCart.js";
 import { useContext } from "react";
 import Context from "../context/index.js"; 
+
 export default function ProductDetails() {
   const { fetchUserAddToCart } = useContext(Context); 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const productImageLoadingList = new Array(4).fill(null);
   const handleAddtoCart = async (e, id) => {
     await addToCart(e, id);
     fetchUserAddToCart();
     // Call helper function to add the product to the cart
   };
+
+  const handleBuyProduct = async (e, id) => {
+    await addToCart(e, id);
+    fetchUserAddToCart();
+    navigate("/cart")
+    // Call helper function to add the product to the cart
+  };
+
   const [data, setData] = useState({
     productName: "  ",
     brandName: " ",
@@ -221,7 +231,7 @@ export default function ProductDetails() {
       </div>
 
       <div className=" flex gap-2 py-2">
-        <button className=" border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 hover:bg-red-600 hover:text-white">
+        <button  onClick={(e)=>{handleBuyProduct(e,  params?.id)}} className=" border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 hover:bg-red-600 hover:text-white">
           Buy{" "}
         </button>
         <button  onClick={(e)=>{handleAddtoCart(e,  params?.id)}} className=" border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-white bg-red-600  hover:bg-white hover:text-red-600">

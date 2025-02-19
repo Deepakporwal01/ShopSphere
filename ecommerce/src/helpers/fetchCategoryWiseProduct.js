@@ -13,5 +13,4 @@ export const fetchCategoryWiseProduct = async (category) =>{
     })
     const data = await response.json()
     return data
-    
 } 

@@ -17,14 +17,14 @@ const param = useParams();
   };
 
   return (
-    <div className="flex items-center flex-wrap   md:gap-6 overflow-hidden    ">
+    <div className="flex   items-center   flex-wrap   md:gap-6 overflow-hidden    ">
       {/* Conditional rendering based on loading state */}
       {loading ? (
         loadingList.map((_, index) => {
           // Render loading placeholders
           return (
             <div
-              className="w-full min-w-[250px] md:min-w-[380px] md:max-w-[340px] max-w-[230px] bg-red-600 rounded-sm shadow"
+              className="w-full min-w-[150px] md:min-w-[380px] md:max-w-[340px] max-w-[200px] bg-red-600 rounded-sm shadow"
               key={index}
             >
               {/* Product card skeleton */}
@@ -48,10 +48,10 @@ const param = useParams();
           return (
             <Link
               to={"/search/product-details/" + product?._id}
-              className="w-full min-w-[20px] md:min-w-[320px] md:max-w-[320px] max-w-[280px]   rounded-sm shadow"
+              className=" w-full  min-w-[150px] md:min-w-[300px] md:max-w-[300px] max-w-[200px]  "
               key={index}
             >
-              <div className="bg-slate-200 h-48 p-2 min-w-[280px] md:min-w-[145px] flex items-center justify-center">
+              <div className="bg-slate-200 h-48 p-2   md:min-w-[145px]  flex items-center justify-center">
                 <img
                   src={product.productImage[0]}
                   alt={product?.productName || "Product Image"}

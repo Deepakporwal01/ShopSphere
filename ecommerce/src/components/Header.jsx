@@ -23,12 +23,11 @@ const handlesearch =(e)=>{
 const {value} = e.target;
 setInput(value);
 if(value){
-navigate(`/search?q=${value}`)
+navigate(`/search?q=${value}`,{ replace: true })
 }else{
-  navigate("/search")
+  navigate("/")
 }
 }
-
   // Function to handle user logout
   const handleLogout = async () => {
     try {

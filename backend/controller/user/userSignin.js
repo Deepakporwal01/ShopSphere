@@ -48,7 +48,7 @@ else{
 
 catch(err){
     res.json({
-        message : err.message ,
+        message : "user does not exists" ,
         error : true, 
         success : false,
     })

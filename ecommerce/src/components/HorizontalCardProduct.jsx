@@ -100,7 +100,7 @@ return(
   })
         ) : (
           data?.map((product, index) => {
-            console.log("pid",product)
+         
             return (
               <Link to ={"product-details/"+product?._id}
             

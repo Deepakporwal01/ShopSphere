@@ -5,6 +5,7 @@ import { displayINRCurrency } from "../helpers/displayCurrency";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { addToCart } from "../helpers/addToCart";
+
 export default function Cart() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -193,24 +194,30 @@ export default function Cart() {
           </div>
 
           {/* Total Product Calculation */}
-          <div className="mt-5 lg:mt-0 w-full max-w-sm lg:ml-4">
+          <div className="mt-5 lg:mt-0 w-full max-w-sm lg:ml-4 flex flex-col gap-10">
             {loading ? (
-              <div className="h-36 bg-slate-200 border border-slate-300 animate-pulse">
-                Total
-              </div>
+              <div className="h-36 bg-slate-200 border border-slate-300 animate-pulse"></div>
             ) : (
               <div className="bg-white p-4 border border-slate-300 rounded">
-                <h3 className="text-lg font-semibold">Total</h3>
-                <p>
-                  {displayINRCurrency(
-                    data.reduce(
-                      (total, product) =>
-                        total +
-                        product.quantity * product.productId.sellingPrice,
-                      0
-                    )
-                  )}
-                </p>
+                <h2 className=" bg-red-500">Summary</h2>
+                <div className=" flex justify-around">
+                  <p>quantity</p>
+                  <p>{context.countCartProducts}</p>
+                </div>
+                <div className=" flex justify-around">
+                  <h3 className="text-lg font-semibold">Total price</h3>
+                  <p>
+                    {displayINRCurrency(
+                      data.reduce(
+                        (total, product) =>
+                          total +
+                          product.quantity * product.productId.sellingPrice,
+                        0
+                      )
+                    )}
+                  </p>
+                </div>
+                <div className=" bg-blue-600 cursor-pointer"  >Payment</div>
               </div>
             )}
           </div>

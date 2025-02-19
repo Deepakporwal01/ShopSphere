@@ -41,7 +41,7 @@ res.status(201).json({
 })
     }catch(err){
 res.json({
-    messase : err.message ,
+    messase : "Something went wrong" ,
     error : true,
     success : false,
 })
