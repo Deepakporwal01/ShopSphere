@@ -17,3 +17,4 @@ ecommerce/.env.production.local
 ecommerce/npm-debug.log*
 ecommerce/yarn-debug.log*
 ecommerce/yarn-error.log*
+node_modules
