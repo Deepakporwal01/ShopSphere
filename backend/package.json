@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "build": "react-scripts build"
+    "dev": "nodemon index.js"
+   
   },
   "author": "",
   "license": "ISC",
