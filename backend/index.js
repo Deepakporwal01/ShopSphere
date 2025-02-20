@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import { router } from "./routes/index.js";
 const app = express();
 app.use(cors({
-    origin:"*",  
+    origin:"https://shopsphere-vert.vercel.app",  
     credentials:true, 
     
 })); 
