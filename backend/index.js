@@ -6,11 +6,23 @@ import {connectdb} from "./config/db.js";
 import cookieParser from "cookie-parser";
 import { router } from "./routes/index.js";
 const app = express();
-app.use(cors({
-    origin:"http://localhost:3000",  
-    credentials:true, 
-    
-})); 
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://shopsphere-vert.vercel.app'
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true
+  }));
+  
 
 app.use(express.json());
 app.use(cookieParser());

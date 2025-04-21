@@ -1,24 +1,27 @@
-import { userSigninController } from "../controller/user/userSignin.js";
+ 
 import jwt from "jsonwebtoken";
 export async function authToken(req, res, next) {
   try {
-    const token = req.cookies?.token;
- 
+    const token = req?.cookies?.token;
+ console.log(token, "token from authToken middleware"); 
+
     if (!token) {
       return res.json({
-        message: "user not logged in ",
+        message: "user not  ",
         success: false, 
         error: true,
       });
     }
+
     jwt.verify(token, process.env.TOKEN_SECRET_KEY, function (err, decoded) {
+      console.log(process.env.TOKEN_SECRET_KEY, "token secret key from env");
       if (err) {
-        console.log("auth err", err);
+        console.log("auth err in jwt ", err);
       }
-      req.userId = decoded._id;
+      req.userId = decoded?._id;
       next();
     });
-  } catch (err) {
+  } catch (err) { 
     res.status(400).json({
       error: true,
       data: [],

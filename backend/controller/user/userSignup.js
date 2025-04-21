@@ -30,6 +30,7 @@ const payload = {
     role:"Customer",
     password:hashPassword,
 }
+console.log(payload);
 const userData = new userModel(payload);
  
 const saveUser = userData.save();

@@ -7,7 +7,7 @@ export async function getCategoryProductController(req,res){
 const productCategory = await productModel.distinct("category")
 const productByCategory = []
 for(const category of productCategory){
-    const product = await productModel.findOne({category})
+    const product = await productModel.findOne({category}) 
     productByCategory.push(product);
 }
  
