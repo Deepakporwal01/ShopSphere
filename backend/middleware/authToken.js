@@ -1,14 +1,13 @@
- 
 import jwt from "jsonwebtoken";
 export async function authToken(req, res, next) {
   try {
     const token = req?.cookies?.token;
- console.log(token, "token from authToken middleware"); 
-
+    console.log(token, "token from authToken middleware");
+  console.log(req?.cookies, "req.cookies from authToken middleware");
     if (!token) {
       return res.json({
         message: "user not  ",
-        success: false, 
+        success: false,
         error: true,
       });
     }
@@ -21,7 +20,7 @@ export async function authToken(req, res, next) {
       req.userId = decoded?._id;
       next();
     });
-  } catch (err) { 
+  } catch (err) {
     res.status(400).json({
       error: true,
       data: [],
