@@ -8,11 +8,11 @@ import { router } from "./routes/index.js";
 const app = express();
 // const allowedOrigins = [
 //     'http://localhost:3000',
-//     'https://shopsphere-vert.vercel.app'
+//     
 //   ];
   
   app.use(cors({
- origin:'http://localhost:3000',
+ origin:'https://shopsphere-vert.vercel.app',
     credentials: true
   }));
   
