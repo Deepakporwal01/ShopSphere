@@ -50,24 +50,24 @@ cd Ecommerce
 
 ## Frontend Setup
 cd ecommerce
-npm install
-npm start
+- npm install
+- npm start
 
 ## create a .env file  in frontend
 REACT_APP_RAZORPAY_KEY = your_razorpay_key_id
 
 
 ## Backend Setup
-cd backend
-npm install 
-node index.js
+- cd backend
+- npm install 
+- node index.js
 
-##create  a .env file in backend 
-PORT=8080
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_SECRET=your_razorpay_key_secret
+## create  a .env file in backend 
+- PORT=8080
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret
+- RAZORPAY_KEY_ID=your_razorpay_key_id
+- RAZORPAY_SECRET=your_razorpay_key_secret
 
 Made with ❤️ by Deepak Porwal
 
