@@ -45,8 +45,8 @@ export async function userSigninController(req, res) {
       
       const tokenOption = {
         httpOnly: true,
-        secure: false, // true in production, false in development
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        secure: true,  
+        sameSite: 'None',
         maxAge: 1000 * 60 * 60 * 8, // 8 hours in milliseconds
         path: '/', // Important: set path for the cookie
       };
