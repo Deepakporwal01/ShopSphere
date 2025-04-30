@@ -12,6 +12,7 @@ export default function CategoryWiseProductList() {
     });
     setLoading(false);
     const dataResponse = await fetchProductData.json();
+    console.log("it is ",dataResponse)
     setCategoryProduct(dataResponse.data);
     console.log(dataResponse.data);
     

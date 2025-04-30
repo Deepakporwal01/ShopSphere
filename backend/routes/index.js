@@ -19,6 +19,7 @@ import updateCartController from "../controller/user/updateaddToCart.js"
 import { removeCartController } from "../controller/product/removefromcart.js";
 import { searchProduct } from "../controller/product/searchProduct.js";
 import { filterProductController } from "../controller/product/filterProduct.js";
+import { placeOrder,verifypayment } from "../controller/order/paymentController.js";
  export const router = express.Router();
 router.post("/signup", userSignUpController);
 router.post("/signin",userSigninController);
@@ -39,3 +40,7 @@ router.post("/updateCart",authToken,updateCartController);
 router.post("/removefromcart",authToken,removeCartController);
 router.get("/search",searchProduct);
 router.post("/filter-product",filterProductController);
+
+// payments routes
+router.post("/place-order",authToken,placeOrder);
+router.post("/verify-payments",authToken,verifypayment);

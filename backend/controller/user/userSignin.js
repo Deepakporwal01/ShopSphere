@@ -5,50 +5,74 @@ import jwt from "jsonwebtoken";
 export async function userSigninController(req, res) {
   try {
     const { email, password } = req.body;
-    console.log("email and password from user sign in",)
+    
     if (!email) {
-      throw new error("please enter email ");
+      return res.status(400).json({
+        success: false,
+        message: "Please enter email",
+        error: true,
+      });
     }
+    
     if (!password) {
-      throw new error("please enter  password ");
+      return res.status(400).json({
+        success: false,
+        message: "Please enter password",
+        error: true,
+      });
     }
+    
     const user = await userModel.findOne({ email });
-
     if (!user) {
-      throw new error("user not found ");
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+        error: true,
+      });
     }
-    const checkpassword = bcrypt.compareSync(password, user?.password);
-    if (checkpassword) {
+    
+    const checkPassword = bcrypt.compareSync(password, user.password);
+    
+    if (checkPassword) {
       const tokenData = {
-        _id: user?._id,
-        email: user?.email,
+        _id: user._id,
+        email: user.email,
       };
-
+      
       const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, {
         expiresIn: "1d",
       });
-
-      const TokenOption = {
+      
+      const tokenOption = {
         httpOnly: true,
-        secure: true, // use 'true' in production for HTTPS
-        sameSite: "none", // or "Lax" / "None" depending on your frontend/backend setup
-        maxAge: 1000 * 60 * 60 * 8, // Optional: 8 hours in milliseconds
+        secure: false, // true in production, false in development
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        maxAge: 1000 * 60 * 60 * 8, // 8 hours in milliseconds
+        path: '/', // Important: set path for the cookie
       };
-
-      res.cookie("token", token, TokenOption).json({
-        success: true,
-        message: "Login Successful",
-        data: token,
-        error: false,
-      });
+      
+      return res
+        .cookie("token", token, tokenOption)
+        .status(200)
+        .json({
+          success: true,
+          message: "Login Successful",
+          data: token,
+          error: false,
+        });
     } else {
-      throw new Error("password does not match");
+      return res.status(401).json({
+        success: false,
+        message: "Password does not match",
+        error: true,
+      });
     }
   } catch (err) {
-    res.json({
-      message: "user does not exists",
-      error: true,
+    console.error("Login error:", err);
+    return res.status(500).json({
       success: false,
+      message: err.message || "An error occurred during login",
+      error: true,
     });
   }
 }

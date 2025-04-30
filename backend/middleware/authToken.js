@@ -1,30 +1,60 @@
 import jwt from "jsonwebtoken";
+
 export async function authToken(req, res, next) {
   try {
-    const token = req?.cookies?.token;
-    console.log(token, "token from authToken middleware");
-  console.log(req?.cookies, "req.cookies from authToken middleware");
+    // Get token from multiple possible sources
+    let token = null;
+    
+    // Check cookies first
+    if (req.cookies && req.cookies.token) {
+      token = req.cookies.token;
+   
+    }
+    
+    // Check authorization header if no token in cookies
+  
+    // If no token found anywhere
     if (!token) {
-      return res.json({
-        message: "user not  ",
+     
+      return res.status(401).json({
+        message: "Authentication required. No token provided.",
         success: false,
         error: true,
       });
     }
 
-    jwt.verify(token, process.env.TOKEN_SECRET_KEY, function (err, decoded) {
-      console.log(process.env.TOKEN_SECRET_KEY, "token secret key from env");
+    // Verify the token
+    jwt.verify(token, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
       if (err) {
-        console.log("auth err in jwt ", err);
+        
+        
+        if (err.name === 'TokenExpiredError') {
+          return res.status(401).json({
+            message: "Token expired. Please login again.",
+            success: false,
+            error: true,
+          });
+        }
+        
+        return res.status(401).json({
+          message: "Invalid token. Authentication failed.",
+          success: false,
+          error: true,
+        });
       }
-      req.userId = decoded?._id;
+      
+      // Set userId in request object for use in controller
+      req.userId = decoded._id;
+     
+      
+      // Continue to the next middleware or route handler
       next();
     });
   } catch (err) {
-    res.status(400).json({
+   
+    return res.status(500).json({
       error: true,
-      data: [],
-      message: err.message || err,
+      message: "Authentication error: " + (err.message || "Unknown error"),
       success: false,
     });
   }

@@ -1,3 +1,14 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "launch": {
+        
+        "configurations": [],
+        "compounds": []
+    },
+    
+        "workbench.colorCustomizations": {
+  "terminal.foreground": "#00FF00"  // Bright green
+}
+
+    
 }

@@ -6,21 +6,22 @@ import { json, Link, useNavigate } from "react-router-dom";
 import { SummaryApi } from "../common";
 import { toast } from "react-toastify";
 import Context from "../context";
-
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../store/userSlice";
+import axios from "axios";
 const Login = () => {
-  function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-      const date = new Date();
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-      expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  }
+  const dispatch = useDispatch();
+  // function setCookie(name, value, days) {
+  //   let expires = "";
+  //   if (days) {
+  //     const date = new Date();
+  //     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  //     expires = "; expires=" + date.toUTCString();
+  //   }
+  //   document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  // }
   const navigate = useNavigate();
-
   const [showpassword, setshowpassword] = useState(false);
-
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -41,19 +42,22 @@ const Login = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
 
-    const dataResponse = await fetch(SummaryApi.signIn.url, {
-      method: SummaryApi.signIn.method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const dataapi = await dataResponse.json();
-
-    if (dataapi.success) {
-      toast.success(dataapi.message);
-      setCookie("token", dataapi.data, 10);
+    // const dataResponse = await fetch(SummaryApi.signIn.url, {
+    //   method: SummaryApi.signIn.method,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     credentials: "include",
+    //   },
+    //   body: JSON.stringify(data),
+    // });
+   const dataResponse = await axios.post(SummaryApi.signIn.url, 
+      data,
+      { withCredentials: true } // This is critical for cookies
+    );
+    const dataapi = await dataResponse.data;
+console.log(dataapi);
+    if (dataapi?.success) {
+      toast.success(dataapi?.message);
       fetchUserDetails();
       fetchUserAddToCart();
       navigate("/");
