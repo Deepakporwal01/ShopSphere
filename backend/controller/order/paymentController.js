@@ -6,8 +6,8 @@ export const placeOrder = async (req, res) => {
   try {
     const { cartItems, addressDetails, shipping_options } = req.body;
 
-    const userId  = req.userId;
-    console.log(userId)
+    const userId = req.userId;
+    console.log(userId);
     if (!Array.isArray(cartItems) || cartItems.length === 0) {
       return res.status(400).json({ success: false, message: "Cart is empty" });
     }
@@ -18,7 +18,7 @@ export const placeOrder = async (req, res) => {
       return acc + item.productId.sellingPrice * item.quantity;
     }, 0);
 
-    const amountInPaise = totalAmount ; // Razorpay uses smallest currency unit (paise)
+    const amountInPaise = totalAmount; // Razorpay uses smallest currency unit (paise)
 
     // Create Razorpay order
     const razorpayOrder = await createOrder(amountInPaise, "INR");

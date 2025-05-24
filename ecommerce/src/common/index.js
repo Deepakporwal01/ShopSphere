@@ -1,4 +1,3 @@
- 
 
 const backenddomain = "https://shopsphere-ohg5.onrender.com" ; 
  export const SummaryApi = {

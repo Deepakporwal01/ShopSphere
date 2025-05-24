@@ -1,7 +1,5 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv/config"
- 
 import {connectdb} from "./config/db.js";
 import cookieParser from "cookie-parser";
 import { router } from "./routes/index.js";
@@ -12,11 +10,10 @@ const app = express();
 //   ];
   
   app.use(cors({
- origin:'https://shopspheree.onrender.com',
+ origin:'https://shopspheree.onrender.com'  ,
     credentials: true
   }));
   
-
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api",router);  
