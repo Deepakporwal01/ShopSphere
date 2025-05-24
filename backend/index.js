@@ -12,7 +12,7 @@ const app = express();
 //   ];
   
   app.use(cors({
- origin:'https://shopsphere-vert.vercel.app',
+ origin:'https://shopspheree.onrender.com',
     credentials: true
   }));
   

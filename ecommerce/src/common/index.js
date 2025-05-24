@@ -1,6 +1,6 @@
  
 
-const backenddomain = " http://localhost:8080" ; 
+const backenddomain = "https://shopsphere-ohg5.onrender.com" ; 
  export const SummaryApi = {
     signUp:{
         url :`${backenddomain}/api/signup`,
