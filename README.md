@@ -2,7 +2,7 @@
 
 A full-stack E-Commerce web application where users can explore and purchase electronic gadgets online. Owner can list his products, and customers can browse, search, and order items with a smooth and responsive user experience.
 
-## 🚀 Features
+## 🚀 Features 
 
 - 🔐 User Authentication (Sign Up / Login)
 - 🛍️ Product Listing, Filtering & Search
