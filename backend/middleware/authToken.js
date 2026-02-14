@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 export async function authToken(req, res, next) {
   try {
     // Get token from multiple possible sources
-    let token = null;
+    let token = null; 
     
     // Check cookies first
     if (req.cookies && req.cookies.token) {
